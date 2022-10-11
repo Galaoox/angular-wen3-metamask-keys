@@ -1,1 +1,29 @@
-<app-auth></app-auth>
+<!-- <app-auth></app-auth> -->
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-body rounded-0 mb-4 bg-dark">
+        <h1>DApp</h1>
+        <h6 class="text-muted">Decentralized Task</h6>
+        <span>Wallet</span>
+        <span>12312312312312312321</span>
+      </div>
+
+      <form class="card card-body bg-dark rounded-0" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h4>Save a Task</h4>
+        <input type="text" placeholder="Write a Task"  formControlName="title" class="form-control bg-dark text-white rounded-0 my-4" />
+
+        <textarea rows="2" class="form-control bg-dark text-white rounded-0 my-4" formControlName="description" placeholder="I have to do..."></textarea>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <div class="col-md-8">
+      <div class="card bg-dark">
+        task list
+
+      </div>
+    </div>
+  </div>
+</div>

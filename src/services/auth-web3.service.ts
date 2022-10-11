@@ -10,7 +10,7 @@ declare let window: any;
   providedIn: 'root'
 })
 export class AuthWeb3Service {
-  web3: any = null;
+  private web3: any = null;
   get web3Instance() { return this.web3; }
 
   chainIds: string[] = ['0x1'];
@@ -24,7 +24,7 @@ export class AuthWeb3Service {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'No tienes instalado MetaMask!'
+        text: 'No tiene instalado MetaMask'
       });
     }
   }
@@ -34,33 +34,33 @@ export class AuthWeb3Service {
   }
 
   async handleIdChainChanged() {
-    const chainId: string = await window.ethereum.request({ method: 'eth_chainId' });
-
-    if (this.chainIds.includes(chainId)) {
+    //TODO: POR AHORA NO SE ESTA VALIDANDO LA RED
+    // const chainId: string = await window.ethereum.request({ method: 'eth_chainId' });
+    // if (this.chainIds.includes(chainId)) {
       this.handleAccountsChanged();
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Selecciona la red principal de Ethereum (Mainet)'
-      });
-    }
+    // } else {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Selecciona la red principal de Ethereum (Mainet)'
+    //   });
+    // }
 
     window.ethereum.on('chainChanged', (res: string) => {
-      if (!this.chainIds.includes(res)) {
-        this.logout();
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Selecciona la red principal de Ethereum (Mainet)'
-        });
-      } else {
+      // if (!this.chainIds.includes(res)) {
+      //   this.logout();
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Oops...',
+      //     text: 'Selecciona la red principal de Ethereum (Mainet)'
+      //   });
+      // } else {
         if (this.addressUser.getValue() === '') {
           this.handleAccountsChanged();
         } else {
           this.authBackend();
         }
-      }
+      // }
     });
   }
 
